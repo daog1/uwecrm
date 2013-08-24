@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>最近15天</title>
+    {% include "pagheader.html" %}
+        <script src="/media/Highcharts-3.0.1/js/highcharts.js"></script>
+    <script src="/media/Highcharts-3.0.1/js/modules/exporting.js"></script>
+</head>
+<body>
+<script>
+    $(function () {
+            $('#container').highcharts({
+            chart: {
+                type: 'line',
+                marginRight: 130,
+                marginBottom: 30
+            },
+            title: {
+                text: '最近15天呼叫量',
+                x: -20 //center
+            },
+            xAxis: {
+                {#  type: 'datetime'  #}
+                categories: {{ categories|safe }}
+            },
+            yAxis: {
+                title: {
+                    text: '呼叫数量'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: ''
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: 0,
+                y: 100,
+                borderWidth: 0
+            },
+            series: [{
+                name: '呼叫量',
+                data: {{ seriescall|safe }}
+            }]
+        });
+    });
+</script>
+<div class="container">
+    <div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li><a href="{% url 'CallReport.views.report'%}?type=edate&e={{ e }}&u={{ u }}">日报表</a></li>
+            <li class="active"><a href="{% url 'CallReport.views.report'%}?type=e30&e={{ e }}&u={{ u }}">最近15天</a></li>
+            <li><a href="{% url 'CallReport.views.report'%}?type=emonth&e={{ e }}&u={{ u }}">月度报表</a></li>
+        </ul>
+    </div>
+</div>
+     <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+</div>
+</div>
+</body>
+</html>

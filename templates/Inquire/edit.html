@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>修改咨询</title>
+    {% include "pagheader.html" %}
+</head>
+<body>
+<style>
+    textarea{
+        width: 80%;
+    }
+</style>
+<div class="container" >
+    <h1>修改咨询</h1>
+    <form id="form1" method="post" action="{% url 'Inquire.views.update' id %}">
+        <table width="100%" border="0" class="grid_layout" cellspacing="0">
+            {# {{ form.as_table()| safe }}  #}
+            <tr>
+                <td>{{ form.sqid.label  }}</td>
+                <td>{{ form.sqid |safe }}</td>
+                <td>{{ form.phone.label  }}</td>
+                <td>{{ form.phone |safe }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.reason.label  }}</td>
+                <td colspan="6">{{ form.reason |safe }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.results.label  }}</td>
+                <td colspan="6">{{ form.results |safe }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.note.label  }}</td>
+                <td colspan="6">{{ form.note |safe }}</td>
+            </tr>
+        </table>
+        <div class="separator"></div>
+        <div style="text-align: center;">
+            <button type="submit" class="btn">提交表单</button>
+            <button type="submit" class="btn">重置</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>收到呼叫</title>
+    {% include "pagheader.html" %}
+</head>
+<body>
+<style>
+    textarea{
+        width: 80%;
+    }
+</style>
+<div class="container">
+    <div>
+        <h1>收到来自{{ number }}呼叫</h1>
+        {% if contact %}
+            <div class="alert alert-info">
+            <h2 >联系人信息</h2>
+            <p>姓名：{{ contact.name }} 昵称：{{ contact.nickname }}</p>
+            {% if contact.company %}
+                <p>公司：{{ contact.company }} 职位：{{ contact.title }}</p>
+            {% endif %}
+            {# <p>邮箱：{{ contact.e }}</p>  #}
+            </div>
+        {% else %}
+            {# <p>测试</p>  #}
+            <p>新联系人</p>
+            <a class="button" target="_blank" href="{% url 'identities.views.new'%}?e={{ e }}&u={{ u }}&phone={{ number }}">建立联系人</a>
+        {% endif %}
+        <table class="flexme" style="display: none"></table>
+        <a class="button" target="_blank" href="{% url 'Inquire.views.new'%}?e={{ e }}&u={{ u }}&phone={{ number }}">建立咨询</a>
+    </div>
+</div>
+<script>
+    $(function(){
+        $(".flexme").flexigrid({
+            url:"{% url 'Inquire.views.getlatelys'%}?e={{ e }}&u={{ u }}&phone={{ number }}",
+            title:'最近咨询',
+            dataType : 'json',
+            singleSelect: true,
+            colModel : [ {
+                display : 'ID',
+                name : 'id',
+                width : 40,
+                sortable : true,
+                align : 'center'
+            },
+                {
+                    display : '来电号码',
+                    name : 'phone',
+                    width : 100,
+                    sortable : true,
+                    align : 'center'
+                },
+                {
+                    display : '来电原因',
+                    name : 'reason',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                },
+                {
+                    display : '沟通结果',
+                    name : 'results',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                }
+            ],
+            searchitems : [ {
+                display : 'ID',
+                name : 'id'
+            }, {
+                display : '联系人',
+                name : 'contact',
+                isdefault : true
+            } ],
+            sortname : "id",
+            sortorder : "asc",
+            usepager : false,
+            useRp : false,
+            rp : 15,
+            showTableToggleBtn : false,
+            width: 'auto',
+            height: 150
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>建立咨询</title>
+    {% include "pagheader.html" %}
+</head>
+<body>
+<style>
+    textarea{
+        width: 80%;
+    }
+</style>
+<div class="container" >
+    <h1>建立咨询</h1>
+    <form id="form1" method="post" action="{% url 'Inquire.views.save'%}">
+        <input name="ucompany" type="hidden" value="{{ e }}">
+        <input name="uagent" type="hidden" value="{{ u }}">
+        <table width="100%" border="0" class="grid_layout" cellspacing="0">
+            <tr>
+                <td>{{ form.sqid.label  }}</td>
+                <td>{{ form.sqid |safe }}</td>
+                <td>{{ form.phone.label  }}</td>
+                <td>{{ form.phone |safe }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.reason.label  }}</td>
+                <td colspan="6">{{ form.reason |safe }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.results.label  }}</td>
+                <td colspan="6">{{ form.results |safe }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.note.label  }}</td>
+                <td colspan="6">{{ form.note |safe }}</td>
+            </tr>
+        </table>
+        <div class="separator"></div>
+        <div style="text-align: center;">
+            <button type="submit" class="btn">提交表单</button>
+            <button type="submit" class="btn">重置</button>
+        </div>
+    </form>
+    {#
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>完善资料</legend>
+            <div class="control-group">
+                <label class="control-label" for="input01">您的尊姓大名</label>
+                <div class="controls">
+                    <input type="text" class="input" id="input01">
+                </div>
+                <label class="control-label" for="input01">您的尊姓大名</label>
+                <div class="controls">
+                <input type="text" class="input" id="input01">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">您的twitter网址</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="input01">
+                    <p class="help-block">请输入您的twitter网址，以便我们收录</p>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form >
+        <div class="p-line">
+            <label class="p-label">姓名:</label>
+            <input>
+            <label class="p-label">昵称:</label>
+            <input>
+        </div>
+        <div>
+            <label class="p-label">性别:</label>
+                    <input type="radio" name="radios" value="1" checked="checked">
+            <label class="p-label2">男</label>
+                    <input type="radio" name="radios" value="2">
+            <label class="p-label2" >女
+            </label>
+            <label class="p-label">生日:</label>
+            <input>
+        </div>
+        <div class="p-line">
+            <label class="p-label">工单号:</label>
+            <input>
+            <label class="p-label">来电号码:</label>
+            <input>
+        </div>
+        <div class="p-line">
+            <label class="p-label" >咨询事由:</label>
+            <textarea class="form-textarea"></textarea>
+        </div>
+        <div class="p-line">
+            <label class="p-label" >电话:</label>
+            <input><input><input>
+        </div>
+
+    </form> #}
+</div>
+</body>
+</html>

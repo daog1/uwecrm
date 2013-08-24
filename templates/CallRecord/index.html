@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>建立联系人</title>
+    {% include "pagheader.html" %}
+</head>
+<body>
+<style>
+    textarea{
+        width: 80%;
+    }
+</style>
+<div class="container" >
+    <h1>建立联系人</h1>
+    <form id="form1" method="post" ">
+        <table width="100%" border="0" class="grid_layout" cellspacing="0">
+            {# <tr>
+                <td>{{ form.name.label }}</td>
+                <td >
+                    {{ form.name| safe}}
+                </td>
+                <td>{{ form.nickname.label }}</td>
+                <td >
+                    {{ form.nickname| safe}}
+                </td>
+            </tr>
+            <tr >
+                <td>{{ form.phone1.label }}</td>
+                <td colspan="6">
+                    {{ form.phone1| safe}}
+                    {{ form.phone2| safe}}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form.email1.label }}</td>
+                <td colspan="6">
+                    {{ form.email1| safe}}
+                    {{ form.email2| safe}}
+                </td>
+            </tr>
+            <tr >
+                <td>{{ form.company1.label }}</td>
+                <td>
+                    {{ form.company1| safe}}
+                </td>
+                <td>{{ form.title.label }}</td>
+                <td>
+                    {{ form.title| safe}}
+                </td>
+            </tr>
+            <tr >
+                <td>{{ form.addr.label }}</td>
+                <td colspan="6">
+                    {{ form.addr| safe}}
+                </td>
+            </tr>
+            <tr >
+                <td>{{ form.note.label }}</td>
+                <td colspan="6" >
+                    {{ form.note| safe}}
+                </td>
+            </tr>
+            #}
+        </table>
+        <div class="separator"></div>
+        <div style="text-align: center;">
+            <button type="submit" class="btn">提交表单</button>
+            <button type="submit" class="btn">重置</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

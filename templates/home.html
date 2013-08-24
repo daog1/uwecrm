@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>主页</title>
+    {% include "pagheader.html" %}
+</head>
+<body >{# style="background-color: rgb(223, 239, 245);" #}
+<div class="container">
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">主页</a>
+        <ul class="nav">
+            <li><a href="{% url 'identities.views.new' %}?e={{ e }}&u={{ u }}" target="_blank">建立联系人</a></li>
+            <li><a href="{% url 'Inquire.views.new' %}?e={{ e }}&u={{ u }}" target="_blank">建立咨询</a></li>
+            <li><a href="{% url 'identities.views.index' %}?e={{ e }}&u={{ u }}" target="_blank">联系人列表</a></li>
+            <li><a href="{% url 'Inquire.views.index'%}?e={{ e }}&u={{ u }}" target="_blank">咨询列表</a></li>
+            <li><a href="{% url 'CallReport.views.report'%}?type=edate&e={{ e }}&u={{ u }}" target="_blank">报表</a></li>
+            <li><a href="{% url 'CallRecord.views.index'%}?e={{ e }}&u={{ u }}" target="_blank">呼叫记录</a></li>
+            {# <li><a href="{% url 'webapp.views.home'%}?e=uwe&u=1002&p=1002">主页</a></li>  #}
+        </ul>
+    </div>
+</div>
+    <div class="inline" style="margin-left: 20px">
+        <table class="flexme1" style="display: none"></table>
+    </div>
+    <div class="inline">
+    <table class="flexme2" style="display: none"></table>
+    </div>
+
+</div>
+<script>
+    $(function(){
+        $(".flexme1").flexigrid({
+            url:"{% url 'identities.views.getListAjax'%}?e={{ e }}&u={{ u }}",
+            title:'最近联系人',
+            dataType : 'json',
+            singleSelect: true,
+            colModel : [ {
+                display : 'ID',
+                name : 'id',
+                width : 40,
+                sortable : true,
+                align : 'center'
+            },
+                {
+                    display : '姓名',
+                    name : 'name',
+                    width : 80,
+                    sortable : true,
+                    align : 'center'
+                },
+                {
+                    display : '电话',
+                    name : 'phone',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                },
+                {
+                    display : '建立时间',
+                    name : 'date_added',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                }
+                ],
+            sortname : "id",
+            sortorder : "asc",
+            usepager : false,
+            useRp : false,
+            rp : 15,
+            showTableToggleBtn : false,
+            width: 450,
+            height: 300
+        });
+        $(".flexme2").flexigrid({
+            //url:"{% url 'identities.views.getListAjax'%}?e={{ e }}&u={{ u }}",
+            url:"{% url 'Inquire.views.getListAjax'%}?e={{ e }}&u={{ u }}",
+            title:'最近咨询',
+            dataType : 'json',
+            singleSelect: true,
+            colModel : [ {
+                display : 'ID',
+                name : 'id',
+                width : 40,
+                sortable : true,
+                align : 'center'
+            },
+                {
+                    display : '来电号码',
+                    name : 'phone',
+                    width : 100,
+                    sortable : true,
+                    align : 'center'
+                },
+                {
+                    display : '来电原因',
+                    name : 'reason',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                },
+                {
+                    display : '沟通结果',
+                    name : 'results',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                }
+            ],
+            searchitems : [ {
+                display : 'ID',
+                name : 'id'
+            }, {
+                display : '联系人',
+                name : 'contact',
+                isdefault : true
+            } ],
+            sortname : "id",
+            sortorder : "asc",
+            usepager : false,
+            useRp : false,
+            rp : 15,
+            showTableToggleBtn : false,
+            width: 450,
+            height: 300
+        });
+        /*
+        $(".flexme2").flexigrid({
+            //url:"{% url 'Inquire.views.getListAjax'%}?e={{ e }}&u={{ u }}",
+            url:"{% url 'identities.views.getListAjax'%}?e={{ e }}&u={{ u }}",
+            title:'最近咨询',
+            colModel : [ {
+                display : 'ID',
+                name : 'id',
+                width : 40,
+                sortable : true,
+                align : 'center'
+            },
+                {
+                    display : '来电号码',
+                    name : 'phone',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                },
+                {
+                    display : '来电原因',
+                    name : 'reason',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                },
+                {
+                    display : '沟通结果',
+                    name : 'results',
+                    width : 130,
+                    sortable : true,
+                    align : 'center'
+                }
+            ],
+            searchitems : [ {
+                display : 'ID',
+                name : 'id'
+            }, {
+                display : '联系人',
+                name : 'contact',
+                isdefault : true
+            } ],
+            sortname : "id",
+            sortorder : "asc",
+            usepager : false,
+            useRp : false,
+            rp : 15,
+            showTableToggleBtn : false,
+            width: 450,
+            height: 300
+        });*/
+        });
+</script>
+
+</body>
+</html>

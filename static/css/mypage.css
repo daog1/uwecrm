@@ -1,0 +1,14 @@
+.p-label{display:inline-block;width:110px;text-align:right;font-weight:700;padding:0;}
+.p-line{padding:10px 0;}
+.p-tip{display:block;height:40px;line-height:3;}
+.p-tip, .p-submit{padding-left:120px;}
+.p-submit{margin-bottom:15px;}
+.p-note{font-size:12px;}
+.inline{
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+.p-label2{display:inline-block;padding-right: 10px}
+
+.form-textarea{height:90px;line-height:1.5;padding:5px 5px;vertical-align:text-top;}

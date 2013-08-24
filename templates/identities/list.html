@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>联系人列表</title>
+    {% include "pagheader.html" %}
+</head>
+<body>
+<div class="container">
+<table class="flexme3" style="display: none"></table>
+</div>
+<script>
+    function test(com, grid) {
+        if (com == '新增')
+        {
+            window.open("{% url 'Inquire.views.new'%}?e={{ e }}&u={{ u }}")
+        }
+        else if(com == '修改')
+        {
+            selected_count = $('.trSelected', grid).length;
+            if (selected_count == 0) {
+                alert('请选择一条记录!');
+                return;
+            }
+            data ={}
+            $('.trSelected td', grid).each(function(i) {
+                abbr = $(this).attr('abbr');
+                value = $(this).children('div').text();
+                data[abbr] = value;
+            });
+            //$('#fm').form('load',data);
+            url = "{% url 'Inquire.views.edit' %}"+'?id='+data.id;
+            window.open(url)
+            console.log(url)
+            //window.open("")
+            //url = 'updateajax/?id='+data.id;
+        }
+        else if (com == '删除') {
+            //alert('Add New Item');
+            selected_count = $('.trSelected', grid).length;
+            if (selected_count == 0) {
+                alert('请选择一条记录!');
+                return;
+            }
+            names = '';
+            data = new Array();
+            $('.trSelected td', grid).each(function(i) {
+                data[i] = $(this).children('div').text();
+            });
+            $.messager.confirm('Confirm','你确定要删除?',function(r){
+                if (r){
+                    $.post('destroyajax/',{id:data[0]},function(result){
+                        if (result.errorMsg){
+                            $.messager.show({	// show error message
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            //$('#dg').datagrid('reload');
+                            $(".flexme3").flexReload();
+                        }
+                    },'json');
+                }
+            });
+        }
+    }
+$(function(){
+    $(".flexme3").flexigrid({
+        //url : '{{ geturls }}',
+        url:"{% url 'identities.views.getListAjax'%}?e={{ e }}&u={{ u }}",
+        title:'联系人列表',
+        dataType : 'json',
+        singleSelect: true,
+        colModel : [ {
+            display : 'ID',
+            name : 'id',
+            width : 40,
+            sortable : true,
+            align : 'center'
+        },
+            {
+                display : '姓名',
+                name : 'name',
+                width : 80,
+                sortable : true,
+                align : 'center'
+            },
+            {
+                display : '电话',
+                name : 'phone',
+                width : 180,
+                sortable : true,
+                align : 'center'
+            },
+            {
+                display : '公司',
+                name : 'company',
+                width : 80,
+                sortable : true,
+                align : 'center'
+            }, {
+                display : '职位',
+                name : 'title',
+                width : 60,
+                sortable : true,
+                align : 'center'
+            },
+            {
+                display : '邮箱',
+                name : 'email',
+                width : 180,
+                sortable : true,
+                align : 'center'
+            }],
+        buttons : [ {
+            name : '新增',
+            bclass : 'add',
+            onpress : test
+        },{
+            separator : true
+        },
+            {
+                name : '修改',
+                bclass : 'edit',
+                onpress : test
+            }, {
+                separator : true
+            } ,  {
+                name : '删除',
+                bclass : 'delete',
+                onpress : test
+            }],
+        searchitems : [ {
+            display : 'ID',
+            name : 'id'
+        }, {
+            display : '联系人',
+            name : 'contact',
+            isdefault : true
+        } ],
+        sortname : "id",
+        sortorder : "asc",
+        usepager : true,
+        useRp : true,
+        rp : 15,
+        showTableToggleBtn : true,
+        width: "auto",
+        height: 400
+    });
+});
+</script>
+</body>
+</html>

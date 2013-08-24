@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>建立联系人</title>
+    {% include "pagheader.html" %}
+</head>
+<body>
+<style>
+    textarea{
+        width: 80%;
+    }
+</style>
+<div class="container" >
+    <h1>建立联系人</h1>
+    <form id="form1" method="post">
+        <table width="100%" border="0" class="grid_layout" cellspacing="0">
+            <tr class="style1">
+                <td  align="right"><span class="color_red">*</span>姓名：</td>
+                <td  colspan="2">
+                    <input type="text" name="fileNo" id="fileNo" class="input_text"/>
+                    <span class="errorMsg"></span>
+                </td>
+            </tr>
+            <tr>
+                <td width="10%" align="right"><span class="color_red">*</span>电话：</td>
+                <td  colspan="6">
+                    <input type="text" name="fileNo"  class="input_text"/><span class="errorMsg"></span>
+                    <input type="text" name="fileNo"  class="input_text"/>
+                    <span class="errorMsg"></span>
+                    <input type="text" name="fileNo"  class="input_text"/>
+                    <span class="errorMsg"></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" colspan="1"><span class="color_red">*</span>邮箱：</td>
+                <td colspan="6">
+                    <input type="text" name="fileNo"  class="input_text"/>
+                    <span class="errorMsg"></span>
+                    <input type="text" name="fileNo"  class="input_text"/>
+                    <span class="errorMsg"></span>
+                    <input type="text" name="fileNo"  class="input_text"/>
+                    <span class="errorMsg"></span>
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" colspan="1" ></span>公司：</td>
+                <td colspan="2">
+                    <input type="text" name="fileNo"  class="input_text"/>
+                    <span class="errorMsg"></span>
+                </td>
+                <td colspan="2">
+                    职位：
+                    <input type="text" name="fileNo"  class="input_text"/>
+                    <span class="errorMsg"></span>
+                </td>
+            </tr>
+            <tr>
+                <td width="10%" align="right">地址：</td>
+                <td colspan="6">
+                    <textarea class="editor"></textarea>
+                </td>
+            </tr>
+            <tr>
+            <td width="10%" align="right" colspan="1">背景信息：</td>
+                <td colspan="6">
+                    <textarea  class="editor"></textarea>
+                </td>
+            </tr>
+        </table>
+        <div class="separator"></div>
+        <div style="text-align: center;">
+            <button type="submit" class="btn">提交表单</button>
+            <button type="submit" class="btn">重置</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
